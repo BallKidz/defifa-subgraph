@@ -45,6 +45,7 @@ export function handleTransfer(event: TransferEvent): void {
     token = new Token(tokenFullId)
     token.number = event.params.tokenId
     token.contract = contract.id
+    token.gameId = contract.gameId
     let uri = instance.try_tokenURI(event.params.tokenId)
     if (!uri.reverted) {
       token.uri = uri.value
