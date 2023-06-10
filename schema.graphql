@@ -53,7 +53,7 @@ type Account @entity {
   scorecards: [Scorecard!]! @derivedFrom(field: "submitter")
 }
 
-type DefifaTierRedemptionWeight @entity(immutable: true) {
+type DefifaTierRedemptionWeight @entity {
   id: ID!
   redemptionWeight: BigInt!
   scorecard: Scorecard!

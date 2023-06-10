@@ -1,15 +1,15 @@
 specVersion: 0.0.4
 schema:
   file: ./schema.graphql
-description: 0.2.0
+description: 0.2.2
 dataSources:
   - kind: ethereum
     name: DefifaDeployer
     network: goerli
     source:
       abi: DefifaDeployer
-      address: "0xA1dFb60Bb5A8505c2bee5C1C0089E2cF0a4D7E40"
-      startBlock: 9124587
+      address: "0xCDf409A7997A4d41e90482bC3142b3829198866f"
+      startBlock: 9149382
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -28,8 +28,8 @@ dataSources:
     network: goerli
     source:
       abi: DefifaGovernor
-      address: "0x81deF9C97753AfF22d1E60d87f238D274636f31a"
-      startBlock: 9124587
+      address: "0x049bAD7151B47ef28E643d5f13B8EcA0159e22e7"
+      startBlock: 9149382
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
