@@ -1,7 +1,7 @@
 specVersion: 0.0.4
 schema:
   file: ./schema.graphql
-description: 0.2.3
+description: 0.2.5
 dataSources:
   - kind: ethereum
     name: DefifaDeployer

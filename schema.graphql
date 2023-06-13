@@ -55,6 +55,7 @@ type Account @entity {
 
 type DefifaTierRedemptionWeight @entity {
   id: ID!
+  tierId: ID!
   redemptionWeight: BigInt!
   scorecard: Scorecard!
 }

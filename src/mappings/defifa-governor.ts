@@ -20,6 +20,7 @@ export function handleScorecardSubmitted(event: ScorecardSubmitted): void {
     let weight = new DefifaTierRedemptionWeight(
       scorecard.id + "-" + tierWeight.id.toString()
     );
+    weight.tierId = tierWeight.id.toString()
     weight.redemptionWeight = tierWeight.redemptionWeight;
     weight.scorecard = scorecard.id;
     weight.save();
