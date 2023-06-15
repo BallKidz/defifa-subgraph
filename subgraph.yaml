@@ -1,15 +1,15 @@
 specVersion: 0.0.4
 schema:
   file: ./schema.graphql
-description: 0.1.10
+description: 0.2.12
 dataSources:
   - kind: ethereum
     name: DefifaDeployer
     network: goerli
     source:
       abi: DefifaDeployer
-      address: "0x2cb14eA0eeC9Fa770f709f3EE074003737497B2D"
-      startBlock: 9022149
+      address: "0x4d629652a4d86C1f2712531D977879584f70D036"
+      startBlock: 9149382
     mapping:
       kind: ethereum/events
       apiVersion: 0.0.7
@@ -19,10 +19,32 @@ dataSources:
       abis:
         - name: DefifaDeployer
           file: ./abis/DefifaDeployer.json
+        - name: DefifaNFT
+          file: ./abis/DefifaNFT.json
       eventHandlers:
         - event: LaunchGame(indexed uint256,indexed address,indexed address,address,address)
           handler: handleLaunchGame
       file: ./src/mappings/defifa-deployer.ts
+  - kind: ethereum
+    name: DefifaGovernor
+    network: goerli
+    source:
+      abi: DefifaGovernor
+      address: "0x1dA131534579cD9cFbE7F3b4064f4202D4B830a4"
+      startBlock: 9149382
+    mapping:
+      kind: ethereum/events
+      apiVersion: 0.0.7
+      language: wasm/assemblyscript
+      file: ./src/mappings/defifa-governor.ts
+      entities:
+        - Scorecard
+      abis:
+        - name: DefifaGovernor
+          file: ./abis/IDefifaGovernor.json
+      eventHandlers:
+        - event: ScorecardSubmitted(indexed uint256,indexed uint256,(uint256,uint256)[],bool,address)
+          handler: handleScorecardSubmitted
 templates:
   - name: DefifaNFT
     kind: ethereum/contract
@@ -46,41 +68,13 @@ templates:
       eventHandlers:
         - event: Transfer(indexed address,indexed address,indexed uint256)
           handler: handleTransfer
-  - name: Governor
-    kind: ethereum/contract
-    network: goerli
-    source:
-      abi: Governor
-    mapping:
-      kind: ethereum/events
-      apiVersion: 0.0.7
-      language: wasm/assemblyscript
-      file: ./src/mappings/governor.ts
-      entities:
-        - Governor
-      abis:
-        - name: Governor
-          file: ./abis/IGovernorTimelock.json
-      eventHandlers:
-        - event: ProposalCanceled(uint256)
-          handler: handleProposalCanceled
-        - event: ProposalCreated(uint256,address,address[],uint256[],string[],bytes[],uint256,uint256,string)
-          handler: handleProposalCreated
-        - event: ProposalExecuted(uint256)
-          handler: handleProposalExecuted
-        - event: ProposalQueued(uint256,uint256)
-          handler: handleProposalQueued
-        - event: VoteCast(indexed address,uint256,uint8,uint256,string)
-          handler: handleVoteCast
-        - event: VoteCastWithParams(indexed address,uint256,uint8,uint256,string,bytes)
-          handler: handleVoteCastWithParams
   - name: TokenMetadata
     kind: file/ipfs
     network: goerli
     mapping:
       apiVersion: 0.0.7
       language: wasm/assemblyscript
-      file: ./src/mappings/metadata.ts
+      file: ./src/mappings/token-metadata.ts
       handler: handleMetadata
       entities:
         - TokenMetadata
